@@ -232,6 +232,30 @@
     <Content Include="src\app\digital-assets\digital-asset-url-input.component.scss">
       <DependentUpon>digital-asset-url-input.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\quotes\quote-edit-embed.component.html">
+      <DependentUpon>quote-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-edit-embed.component.scss">
+      <DependentUpon>quote-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-item-embed.component.html">
+      <DependentUpon>quote-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-item-embed.component.scss">
+      <DependentUpon>quote-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-list-embed.component.html">
+      <DependentUpon>quote-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-list-embed.component.scss">
+      <DependentUpon>quote-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-master-detail.component.html">
+      <DependentUpon>quote-master-detail.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\quotes\quote-master-detail.component.scss">
+      <DependentUpon>quote-master-detail.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
@@ -470,6 +494,13 @@
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
+    <TypeScriptCompile Include="src\app\quotes\index.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote.model.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote.service.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote-item-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote-list-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\quotes\quote-master-detail.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

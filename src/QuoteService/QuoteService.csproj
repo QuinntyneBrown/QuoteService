@@ -198,11 +198,8 @@
     <Compile Include="Data\Helpers\SoftDeleteAttribute.cs" />
     <Compile Include="Data\Helpers\SoftDeleteInterceptor.cs" />
     <Compile Include="Data\Helpers\SoftDeleteQueryVisitor.cs" />
-    <Compile Include="Data\Model\Response.cs" />
     <Compile Include="Data\Model\ILoggable.cs" />
-    <Compile Include="Data\Model\Option.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
-    <Compile Include="Data\Model\QuestionType.cs" />
     <Compile Include="Features\Core\Cache.cs" />
     <Compile Include="Features\Core\CacheProvider.cs" />
     <Compile Include="Features\Core\DateExtensions.cs" />
@@ -244,8 +241,6 @@
     <Compile Include="Data\Model\User.cs" />
     <Compile Include="Data\Model\Role.cs" />
     <Compile Include="Data\Model\Tenant.cs" />
-    <Compile Include="Data\Model\Question.cs" />
-    <Compile Include="Data\Model\Survey.cs" />
     <Compile Include="Security\AuthConfiguration.cs" />
     <Compile Include="Security\AuthenticateCommand.cs" />
     <Compile Include="Security\EncryptionService.cs" />
@@ -258,15 +253,21 @@
     <Compile Include="Security\Roles.cs" />
     <Compile Include="Security\UserManager.cs" />
     <Compile Include="UnityConfiguration.cs" />
-    <Compile Include="Data\Model\Respondent.cs" />
     <Compile Include="Data\Migrations\UserConfiguration.cs" />
     <Compile Include="Data\Migrations\RoleConfiguration.cs" />
     <Compile Include="Data\Migrations\TenantConfiguration.cs" />
     <Compile Include="Features\Users\UserController.cs" />
     <Compile Include="Data\Model\DigitalAsset.cs" />
-    <Compile Include="Data\Model\SurveyResult.cs" />
+    <Compile Include="Data\Model\Quote.cs" />
+    <Compile Include="Features\Quotes\AddOrUpdateQuoteCommand.cs" />
+    <Compile Include="Features\Quotes\GetQuotesQuery.cs" />
+    <Compile Include="Features\Quotes\GetQuoteByIdQuery.cs" />
+    <Compile Include="Features\Quotes\RemoveQuoteCommand.cs" />
+    <Compile Include="Features\Quotes\QuoteApiModel.cs" />
+    <Compile Include="Features\Quotes\QuoteController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Features\Quotes\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

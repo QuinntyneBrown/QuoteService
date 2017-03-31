@@ -1,10 +1,10 @@
-using QuoteService.Security;
 using MediatR;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using QuoteService.Features.DigitalAssets;
+using QuoteService.Security;
 
 namespace QuoteService
 {

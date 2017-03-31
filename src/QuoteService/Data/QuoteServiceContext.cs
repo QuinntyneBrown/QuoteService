@@ -14,6 +14,7 @@ namespace QuoteService.Data
         DbSet<Role> Roles { get; set; }        
         DbSet<Tenant> Tenants { get; set; }
         DbSet<DigitalAsset> DigitalAssets { get; set; }
+        DbSet<Quote> Quotes { get; set; }
         Task<int> SaveChangesAsync();
     }
 
@@ -31,9 +32,8 @@ namespace QuoteService.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<DigitalAsset> DigitalAssets { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
-
-        public DbSet<SurveyResult> SurveyResults { get; set; }
-
+        public DbSet<Quote> Quotes { get; set; }
+        
         public override int SaveChanges()
         {
             UpdateLoggableEntries();

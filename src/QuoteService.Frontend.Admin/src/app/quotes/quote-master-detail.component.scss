@@ -1,0 +1,20 @@
+@import "../../styles/base/_all";
+
+ce-quote-master-detail {
+    display:block;
+	@extend .view-card;
+
+    ce-quote-edit-embed,
+    ce-quote-list-embed {
+        float:left;
+        display:inline-block;
+        position:relative;
+        width:50%;
+    }
+}
+
+ce-quote-master-detail::after {
+    clear:both;
+    display:block;
+    content:" ";
+}
