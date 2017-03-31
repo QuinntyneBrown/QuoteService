@@ -51,6 +51,10 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Google.Maps, Version=0.14.51.34051, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\gmaps-api-net.0.14.51\lib\net\Google.Maps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
       <Private>True</Private>
@@ -115,8 +119,8 @@
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\gmaps-api-net.0.14.51\lib\net\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -229,6 +233,8 @@
     <Compile Include="Features\DigitalAssets\UploadHandlers\FileMultipartFormDataStreamProvider.cs" />
     <Compile Include="Features\DigitalAssets\UploadHandlers\InMemoryMultipartFormDataStreamProvider.cs" />
     <Compile Include="Features\DigitalAssets\UploadHandlers\StreamHelper.cs" />
+    <Compile Include="Features\Geolocation\GeolocationController.cs" />
+    <Compile Include="Features\Geolocation\GoogleApiModels.cs" />
     <Compile Include="Features\Notifications\NotificationsConfiguration.cs" />
     <Compile Include="Features\Notifications\NotificationService.cs" />
     <Compile Include="Features\Users\AddOrUpdateUserCommand.cs" />
@@ -265,9 +271,18 @@
     <Compile Include="Features\Quotes\RemoveQuoteCommand.cs" />
     <Compile Include="Features\Quotes\QuoteApiModel.cs" />
     <Compile Include="Features\Quotes\QuoteController.cs" />
+    <Compile Include="Features\Geolocation\GetDistanceQuery.cs" />
+    <Compile Include="Features\Geolocation\GetLongLatCoordinatesQuery.cs" />
+    <Compile Include="Data\Model\Service.cs" />
+    <Compile Include="Features\Services\AddOrUpdateServiceCommand.cs" />
+    <Compile Include="Features\Services\GetServicesQuery.cs" />
+    <Compile Include="Features\Services\GetServiceByIdQuery.cs" />
+    <Compile Include="Features\Services\RemoveServiceCommand.cs" />
+    <Compile Include="Features\Services\ServiceApiModel.cs" />
+    <Compile Include="Features\Services\ServiceController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Quotes\" />
+    <Folder Include="Features\Services\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

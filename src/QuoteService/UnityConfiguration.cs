@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using QuoteService.Features.DigitalAssets;
 using QuoteService.Security;
+using System.Net.Http;
 
 namespace QuoteService
 {
@@ -14,6 +15,11 @@ namespace QuoteService
         {
             var container = new UnityContainer();            
             container.AddMediator<UnityConfiguration>();
+
+            container.RegisterType<HttpClient>(
+                    new ContainerControlledLifetimeManager(),
+                    new InjectionFactory(x => new HttpClient()));
+
             container.RegisterInstance(AuthConfiguration.LazyConfig);
             container.RegisterInstance(AmazonS3Configuration.LazyConfig);          
             return container;

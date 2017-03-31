@@ -8,11 +8,10 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
     connectedCallback() {
         this.setRoutes([
-            { path: "/", name: "quote-master-detail", authRequired: true },
+            { path: "/", name: "geolocation" },
             { path: "/login", name: "login" },
             { path: "/error", name: "error" },
             { path: "*", name: "not-found" }
-
         ] as any);
 
         this.use(new AuthorizedRouteMiddleware());

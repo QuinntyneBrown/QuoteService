@@ -3,19 +3,18 @@ using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using static QuoteService.Features.Quotes.AddOrUpdateQuoteCommand;
-using static QuoteService.Features.Quotes.GetQuotesQuery;
-using static QuoteService.Features.Quotes.GetQuoteByIdQuery;
-using static QuoteService.Features.Quotes.RemoveQuoteCommand;
+using static QuoteService.Features.Services.AddOrUpdateServiceCommand;
+using static QuoteService.Features.Services.GetServicesQuery;
+using static QuoteService.Features.Services.GetServiceByIdQuery;
+using static QuoteService.Features.Services.RemoveServiceCommand;
 
-
-namespace QuoteService.Features.Quotes
+namespace QuoteService.Features.Services
 {
     [Authorize]
-    [RoutePrefix("api/quote")]
-    public class QuoteController : ApiController
+    [RoutePrefix("api/service")]
+    public class ServiceController : ApiController
     {
-        public QuoteController(IMediator mediator, IUserManager userManager)
+        public ServiceController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
             _userManager = userManager;
@@ -23,8 +22,8 @@ namespace QuoteService.Features.Quotes
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateQuoteResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateQuoteRequest request)
+        [ResponseType(typeof(AddOrUpdateServiceResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateServiceRequest request)
         {
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));
@@ -32,8 +31,8 @@ namespace QuoteService.Features.Quotes
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateQuoteResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateQuoteRequest request)
+        [ResponseType(typeof(AddOrUpdateServiceResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateServiceRequest request)
         {
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));
@@ -42,18 +41,18 @@ namespace QuoteService.Features.Quotes
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetQuotesResponse))]
+        [ResponseType(typeof(GetServicesResponse))]
         public async Task<IHttpActionResult> Get()
         {
-            var request = new GetQuotesRequest();
+            var request = new GetServicesRequest();
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));
         }
-        
+
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetQuoteByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetQuoteByIdRequest request)
+        [ResponseType(typeof(GetServiceByIdResponse))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetServiceByIdRequest request)
         {
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));
@@ -61,8 +60,8 @@ namespace QuoteService.Features.Quotes
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveQuoteResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveQuoteRequest request)
+        [ResponseType(typeof(RemoveServiceResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveServiceRequest request)
         {
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));

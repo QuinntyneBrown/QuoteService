@@ -1,0 +1,7 @@
+@import "../../styles/base/_all";
+
+ce-geolocation {
+    @extend .view-card;
+
+    display:block;
+}
