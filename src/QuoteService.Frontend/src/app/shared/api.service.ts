@@ -1,5 +1,4 @@
 import { fetch } from "../utilities";
-import { Question, Survey } from "../models";
 import { environment } from "../environment";
 
 export class ApiService {
@@ -12,15 +11,15 @@ export class ApiService {
         return this._instance;
     }
 
-    public getSurvey(): Promise<Survey> {        
-        return this._fetch({ url: `/api/survey/getbyuniqueId?uniqueId=${environment.surveyUniqueId}`, authRequired: false }).then((results: string) => {
-            return (JSON.parse(results) as { survey: Survey }).survey;
+    public getServices():Promise<any> {
+        return this._fetch({url:"/api/service/get"}).then((results:string) => {
+            return JSON.parse(results);
         });
-    }   
+    }
 
-    public addSurveyResult(surveyResult): Promise<any> {
-        return this._fetch({ url: `/api/surveyresult/add`, authRequired: false, method: "POST", data: { surveyResult, surveyUniqueId:environment.surveyUniqueId } }).then((results: string) => {
-            return true;
+    public calculateQuote(options:any): Promise<any> {
+        return this._fetch({ url: "/api/quote/calculate", method: "POST", data: options }).then((results: string) => {
+            return JSON.parse(results);
         });
-    } 
+    }
 }

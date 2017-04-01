@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC25A15A-6CCB-44BA-99E1-C8C6DCFBFE40}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -208,11 +210,23 @@
     <Content Include="src\app\app.component.scss">
       <DependentUpon>app.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\location.component.html">
+      <DependentUpon>location.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\location.component.scss">
+      <DependentUpon>location.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\errors\error.component.html">
       <DependentUpon>error.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\errors\error.component.scss">
       <DependentUpon>error.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\splash.component.html">
+      <DependentUpon>splash.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\splash.component.scss">
+      <DependentUpon>splash.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
@@ -318,7 +332,8 @@
           <IISUrl>http://localhost:64410/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -422,6 +437,9 @@
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\app\components\index.ts" />
+    <TypeScriptCompile Include="src\app\pages\splash.component.ts" />
+    <TypeScriptCompile Include="src\app\models\quote-request.model.ts" />
+    <TypeScriptCompile Include="src\app\components\location.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -8,8 +8,6 @@ export class AppRouterOutletComponent extends RouterOutlet {
     connectedCallback() {
         this.setRoutes([
             { path: "/", name: "splash" },
-            { path: "/landing", name: "landing" },
-            { path: "/thank-you", name: "thank-you" },
             { path: "/error", name: "error" }            
         ] as any);
         
