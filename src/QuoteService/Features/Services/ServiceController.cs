@@ -9,6 +9,7 @@ using static QuoteService.Features.Services.GetServiceByIdQuery;
 using static QuoteService.Features.Services.RemoveServiceCommand;
 using System.Net.Http;
 using System;
+using QuoteService.Features.Core;
 
 namespace QuoteService.Features.Services
 {
@@ -27,7 +28,7 @@ namespace QuoteService.Features.Services
         [ResponseType(typeof(AddOrUpdateServiceResponse))]
         public async Task<IHttpActionResult> Add(AddOrUpdateServiceRequest request)
         {
-            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
@@ -36,7 +37,7 @@ namespace QuoteService.Features.Services
         [ResponseType(typeof(AddOrUpdateServiceResponse))]
         public async Task<IHttpActionResult> Update(AddOrUpdateServiceRequest request)
         {
-            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
         
@@ -47,7 +48,7 @@ namespace QuoteService.Features.Services
         public async Task<IHttpActionResult> Get()
         {
             var request = new GetServicesRequest();            
-            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
@@ -56,7 +57,7 @@ namespace QuoteService.Features.Services
         [ResponseType(typeof(GetServiceByIdResponse))]
         public async Task<IHttpActionResult> GetById([FromUri]GetServiceByIdRequest request)
         {
-            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
@@ -65,7 +66,7 @@ namespace QuoteService.Features.Services
         [ResponseType(typeof(RemoveServiceResponse))]
         public async Task<IHttpActionResult> Remove([FromUri]RemoveServiceRequest request)
         {
-            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 

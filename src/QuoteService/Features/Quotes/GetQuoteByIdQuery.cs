@@ -1,6 +1,7 @@
 using MediatR;
 using QuoteService.Data;
 using QuoteService.Features.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace QuoteService.Features.Quotes
     {
         public class GetQuoteByIdRequest : IRequest<GetQuoteByIdResponse> { 
             public int Id { get; set; }
-            public int? TenantId { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class GetQuoteByIdResponse
@@ -32,7 +33,9 @@ namespace QuoteService.Features.Quotes
             {                
                 return new GetQuoteByIdResponse()
                 {
-                    Quote = QuoteApiModel.FromQuote(await _context.Quotes.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId))
+                    Quote = QuoteApiModel.FromQuote(await _context.Quotes
+                    .Include(x => x.Tenant)				
+					.SingleAsync(x=>x.Id == request.Id &&  x.Tenant.UniqueId == request.TenantUniqueId))
                 };
             }
 

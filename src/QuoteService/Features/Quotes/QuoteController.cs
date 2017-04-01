@@ -1,4 +1,3 @@
-using QuoteService.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -8,6 +7,7 @@ using static QuoteService.Features.Quotes.GetQuotesQuery;
 using static QuoteService.Features.Quotes.GetQuoteByIdQuery;
 using static QuoteService.Features.Quotes.RemoveQuoteCommand;
 using static QuoteService.Features.Quotes.CalculateQuoteCommand;
+using QuoteService.Features.Core;
 
 namespace QuoteService.Features.Quotes
 {
@@ -15,10 +15,19 @@ namespace QuoteService.Features.Quotes
     [RoutePrefix("api/quote")]
     public class QuoteController : ApiController
     {
-        public QuoteController(IMediator mediator, IUserManager userManager)
+        public QuoteController(IMediator mediator)
         {
             _mediator = mediator;
-            _userManager = userManager;
+        }
+
+        [Route("calculate")]
+        [HttpPost]
+        [ResponseType(typeof(CalculateQuoteResponse))]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> Calculate(CalculateQuoteRequest request)
+        {
+            request.TenantUniqueId = Request.GetTenantUniqueId();
+            return Ok(await _mediator.Send(request));
         }
 
         [Route("add")]
@@ -26,16 +35,7 @@ namespace QuoteService.Features.Quotes
         [ResponseType(typeof(AddOrUpdateQuoteResponse))]
         public async Task<IHttpActionResult> Add(AddOrUpdateQuoteRequest request)
         {
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
-            return Ok(await _mediator.Send(request));
-        }
-
-        [Route("calculate")]
-        [HttpPost]
-        [ResponseType(typeof(CalculateQuoteResponse))]
-        public async Task<IHttpActionResult> Calculate(CalculateQuoteRequest request)
-        {
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
@@ -44,7 +44,7 @@ namespace QuoteService.Features.Quotes
         [ResponseType(typeof(AddOrUpdateQuoteResponse))]
         public async Task<IHttpActionResult> Update(AddOrUpdateQuoteRequest request)
         {
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
         
@@ -55,16 +55,16 @@ namespace QuoteService.Features.Quotes
         public async Task<IHttpActionResult> Get()
         {
             var request = new GetQuotesRequest();
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
-        
+
         [Route("getById")]
         [HttpGet]
         [ResponseType(typeof(GetQuoteByIdResponse))]
         public async Task<IHttpActionResult> GetById([FromUri]GetQuoteByIdRequest request)
         {
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
@@ -73,11 +73,10 @@ namespace QuoteService.Features.Quotes
         [ResponseType(typeof(RemoveQuoteResponse))]
         public async Task<IHttpActionResult> Remove([FromUri]RemoveQuoteRequest request)
         {
-            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            request.TenantUniqueId = Request.GetTenantUniqueId();
             return Ok(await _mediator.Send(request));
         }
 
         protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
     }
 }

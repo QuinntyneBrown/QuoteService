@@ -14,10 +14,10 @@ using System.Reflection;
 using System.Web.Http;
 
 using static QuoteService.UnityConfiguration;
-using System.Net.Http;
 
 namespace QuoteService
 {
+
     public class ApiConfiguration
     {
         public static void Install(HttpConfiguration config, IAppBuilder app)

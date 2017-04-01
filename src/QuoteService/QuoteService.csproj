@@ -208,6 +208,7 @@
     <Compile Include="Features\Core\CacheProvider.cs" />
     <Compile Include="Features\Core\DateExtensions.cs" />
     <Compile Include="Features\Core\HandleError.cs" />
+    <Compile Include="Features\Core\HttpRequestMessageExtensions.cs" />
     <Compile Include="Features\Core\ICache.cs" />
     <Compile Include="Features\Core\ICacheProvider.cs" />
     <Compile Include="Features\Core\ILogger.cs" />

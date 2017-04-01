@@ -4,6 +4,6 @@ namespace QuoteService.Features.Quotes
 {
     public class QuoteRequestApiModel
     {        
-        public ICollection<ServiceQuoteRequestApiModel> ServiceQuoteRequests { get; set; }
+        public ServiceQuoteRequestApiModel ServiceQuoteRequest { get; set; }
     }
 }

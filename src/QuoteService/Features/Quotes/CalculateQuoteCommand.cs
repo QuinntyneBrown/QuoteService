@@ -5,7 +5,6 @@ using QuoteService.Features.Core;
 using QuoteService.Features.Geolocation;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using System.Linq;
 using System;
 using System.Globalization;
 
@@ -17,6 +16,7 @@ namespace QuoteService.Features.Quotes
         {
             public int? TenantId { get; set; }
             public QuoteRequestApiModel QuoteRequest { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class CalculateQuoteResponse
@@ -40,29 +40,33 @@ namespace QuoteService.Features.Quotes
 
             public async Task<CalculateQuoteResponse> Handle(CalculateQuoteRequest request)
             {
-                var origin = _configuration.Origin;
+                var originFullAddress = "628 Fleet Street, Toronto, Ontario";
+
                 var quote = new Quote();
-                
-                foreach (var serviceQuoteRequest in request.QuoteRequest.ServiceQuoteRequests)
-                {
-                    var quoteLineItem = new QuoteLineItem();
 
-                    var service = await _context.Services.SingleAsync(x => x.Id == serviceQuoteRequest.Service.Id);
+                var quoteLineItem = new QuoteLineItem();
 
-                    var distance = await _mediator.Send(new GetDistanceQuery.GetDistanceRequest() { Address1 = origin, Address2 = serviceQuoteRequest.Location.StreetAddress });
-                    
-                    quoteLineItem.Amount = (service.Rate * serviceQuoteRequest.DurationInHours) + (float.Parse(distance.Distance, CultureInfo.InvariantCulture.NumberFormat) * (float)3.5);
+                var serviceQuoteRequest = request.QuoteRequest.ServiceQuoteRequest;
 
-                    quoteLineItem.Description = $"{service.Name}: {serviceQuoteRequest.Location.StreetAddress}-{serviceQuoteRequest.DurationInHours}";
+                var service = await _context.Services
+                    .Include(x => x.Tenant)
+                    .SingleAsync(x => x.Id == serviceQuoteRequest.ServiceId && x.Tenant.UniqueId == request.TenantUniqueId);
 
-                    quote.QuoteLineItems.Add(quoteLineItem);
-                    
-                    origin = serviceQuoteRequest.Location.StreetAddress;
-                }
+                var distance = await _mediator.Send(new GetDistanceQuery.GetDistanceRequest() { Address1 = originFullAddress, Address2 = $"{serviceQuoteRequest.Address},{serviceQuoteRequest.City},{serviceQuoteRequest.Province}" });
+
+                float distanceKm = float.Parse(distance.Distance, CultureInfo.InvariantCulture.NumberFormat) / 1000;
+
+                quoteLineItem.Amount = (service.Rate * serviceQuoteRequest.DurationInHours) + (distanceKm * (float)3.5);
+
+                quoteLineItem.Description = $"{service.Name}: {serviceQuoteRequest.Address},{serviceQuoteRequest.City},{serviceQuoteRequest.Province}-{serviceQuoteRequest.DurationInHours} Hours";
+
+                quote.QuoteLineItems.Add(quoteLineItem);
+
+                originFullAddress = $"{serviceQuoteRequest.Address},{serviceQuoteRequest.City},{serviceQuoteRequest.Province}";
 
                 return new CalculateQuoteResponse()
                 {
-                    Quote = null
+                    Quote = QuoteApiModel.FromQuote(quote)
                 };
             
             }

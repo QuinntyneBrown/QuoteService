@@ -1,6 +1,7 @@
 using MediatR;
 using QuoteService.Data;
 using QuoteService.Features.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace QuoteService.Features.Quotes
     public class GetQuotesQuery
     {
         public class GetQuotesRequest : IRequest<GetQuotesResponse> { 
-            public int? TenantId { get; set; }        
+            public Guid TenantUniqueId { get; set; }       
         }
 
         public class GetQuotesResponse
@@ -30,7 +31,8 @@ namespace QuoteService.Features.Quotes
             public async Task<GetQuotesResponse> Handle(GetQuotesRequest request)
             {
                 var quotes = await _context.Quotes
-                    .Where( x => x.TenantId == request.TenantId )
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId )
                     .ToListAsync();
 
                 return new GetQuotesResponse()
