@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Web.Http;
 
 using static QuoteService.UnityConfiguration;
+using System.Net.Http;
 
 namespace QuoteService
 {
@@ -27,6 +28,7 @@ namespace QuoteService
             app.MapSignalR();
 
             app.Use(typeof(StatusMiddleware));
+            app.Use(typeof(TenantMiddleware));
 
             config.Filters.Add(new HandleErrorAttribute(container.Resolve<ILoggerFactory>()));
 
@@ -91,4 +93,6 @@ namespace QuoteService
         public const int CacheOutputServerTimeSpan = 3600;
         public const int MaxStringLength = 255;
     }
+
+
 }

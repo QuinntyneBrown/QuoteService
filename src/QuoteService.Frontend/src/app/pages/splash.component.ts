@@ -1,8 +1,12 @@
+import { ApiService } from "../shared";
+
 const template = require("./splash.component.html");
 const styles = require("./splash.component.scss");
 
 export class SplashComponent extends HTMLElement {
-    constructor() {
+    constructor(
+        private _apiService: ApiService = ApiService.Instance
+    ) {
         super();
     }
 
@@ -17,7 +21,7 @@ export class SplashComponent extends HTMLElement {
     }
 
     private async _bind() {
-
+        this.services = await this._apiService.getServices();
     }
 
     private _setEventListeners() {
@@ -34,6 +38,8 @@ export class SplashComponent extends HTMLElement {
                 break;
         }
     }
+
+    private services: Array<any> = [];
 }
 
 customElements.define(`ce-splash`,SplashComponent);

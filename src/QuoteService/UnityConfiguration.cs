@@ -6,6 +6,7 @@ using System.Linq;
 using QuoteService.Features.DigitalAssets;
 using QuoteService.Security;
 using System.Net.Http;
+using Microsoft.Owin;
 
 namespace QuoteService
 {
@@ -13,7 +14,8 @@ namespace QuoteService
     {
         public static IUnityContainer GetContainer()
         {
-            var container = new UnityContainer();            
+            var container = new UnityContainer();
+
             container.AddMediator<UnityConfiguration>();
 
             container.RegisterType<HttpClient>(

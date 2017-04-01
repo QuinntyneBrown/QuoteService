@@ -2,4 +2,24 @@
 
 ce-splash {
     display:block;
+
+    input {
+        display:block;
+        height:2em;
+        width:400px;
+        padding: 10px 14px;
+    }
+
+    select {
+        width: 433px;
+        line-height: 2em;
+        font-size: 1.25em;
+        padding: 10px 14px;
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    ce-button {
+        margin-top:40px;
+    }
 }

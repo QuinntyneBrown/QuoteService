@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace QuoteService.Features.Services
 {
@@ -12,7 +13,7 @@ namespace QuoteService.Features.Services
     {
         public class GetServiceByIdRequest : IRequest<GetServiceByIdResponse> { 
             public int Id { get; set; }
-            public int? TenantId { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class GetServiceByIdResponse
@@ -32,7 +33,9 @@ namespace QuoteService.Features.Services
             {                
                 return new GetServiceByIdResponse()
                 {
-                    Service = ServiceApiModel.FromService(await _context.Services.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId))
+                    Service = ServiceApiModel.FromService(await _context.Services
+                    .Include(x =>x.Tenant)
+                    .SingleAsync(x=>x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId))
                 };
             }
 

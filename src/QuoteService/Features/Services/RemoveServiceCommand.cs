@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace QuoteService.Features.Services
 {
@@ -14,7 +15,7 @@ namespace QuoteService.Features.Services
         public class RemoveServiceRequest : IRequest<RemoveServiceResponse>
         {
             public int Id { get; set; }
-            public int? TenantId { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class RemoveServiceResponse { }
@@ -29,7 +30,9 @@ namespace QuoteService.Features.Services
 
             public async Task<RemoveServiceResponse> Handle(RemoveServiceRequest request)
             {
-                var service = await _context.Services.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId);
+                var service = await _context.Services
+                    .Include(x=>x.Tenant)
+                    .SingleAsync(x=>x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
                 service.IsDeleted = true;
                 await _context.SaveChangesAsync();
                 return new RemoveServiceResponse();

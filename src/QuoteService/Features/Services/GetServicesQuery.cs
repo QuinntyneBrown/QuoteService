@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace QuoteService.Features.Services
 {
     public class GetServicesQuery
     {
         public class GetServicesRequest : IRequest<GetServicesResponse> { 
-            public int? TenantId { get; set; }        
+            public Guid TenantUniqueId { get; set; }        
         }
 
         public class GetServicesResponse
@@ -30,7 +31,8 @@ namespace QuoteService.Features.Services
             public async Task<GetServicesResponse> Handle(GetServicesRequest request)
             {
                 var services = await _context.Services
-                    .Where( x => x.TenantId == request.TenantId )
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId )
                     .ToListAsync();
 
                 return new GetServicesResponse()
@@ -42,7 +44,5 @@ namespace QuoteService.Features.Services
             private readonly QuoteServiceContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

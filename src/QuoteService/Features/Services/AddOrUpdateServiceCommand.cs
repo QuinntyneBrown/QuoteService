@@ -2,10 +2,9 @@ using MediatR;
 using QuoteService.Data;
 using QuoteService.Data.Model;
 using QuoteService.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace QuoteService.Features.Services
 {
@@ -14,7 +13,7 @@ namespace QuoteService.Features.Services
         public class AddOrUpdateServiceRequest : IRequest<AddOrUpdateServiceResponse>
         {
             public ServiceApiModel Service { get; set; }
-            public int? TenantId { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class AddOrUpdateServiceResponse { }
@@ -30,10 +29,15 @@ namespace QuoteService.Features.Services
             public async Task<AddOrUpdateServiceResponse> Handle(AddOrUpdateServiceRequest request)
             {
                 var entity = await _context.Services
-                    .SingleOrDefaultAsync(x => x.Id == request.Service.Id && x.TenantId == request.TenantId);
-                if (entity == null) _context.Services.Add(entity = new Service());
-                entity.Name = request.Service.Name;
-                entity.TenantId = request.TenantId;
+                    .Include(x=>x.Tenant)
+                    .SingleOrDefaultAsync(x => x.Id == request.Service.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+                
+                if (entity == null) {
+                    var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
+                    _context.Services.Add(entity = new Service() { TenantId = tenant.Id });
+                }
+
+                entity.Name = request.Service.Name;                
                 entity.Rate = request.Service.Rate;
                 entity.Description = request.Service.Description;
                 entity.ImageUrl = request.Service.ImageUrl;
