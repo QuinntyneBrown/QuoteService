@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F6286226-21E2-4BEB-B76D-F9E2D650E02A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -262,6 +264,30 @@
     <Content Include="src\app\quotes\quote-master-detail.component.scss">
       <DependentUpon>quote-master-detail.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\services\service-edit-embed.component.html">
+      <DependentUpon>service-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-edit-embed.component.scss">
+      <DependentUpon>service-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-item-embed.component.html">
+      <DependentUpon>service-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-item-embed.component.scss">
+      <DependentUpon>service-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-list-embed.component.html">
+      <DependentUpon>service-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-list-embed.component.scss">
+      <DependentUpon>service-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-master-detail.component.html">
+      <DependentUpon>service-master-detail.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\services\service-master-detail.component.scss">
+      <DependentUpon>service-master-detail.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
@@ -384,7 +410,8 @@
           <IISUrl>http://localhost:64411/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -511,6 +538,14 @@
     <TypeScriptCompile Include="src\app\geolocation\index.ts" />
     <TypeScriptCompile Include="src\app\geolocation\geolocation.component.ts" />
     <TypeScriptCompile Include="src\app\geolocation\geolocation.service.ts" />
+    <TypeScriptCompile Include="src\app\services\index.ts" />
+    <TypeScriptCompile Include="src\app\services\service.model.ts" />
+    <TypeScriptCompile Include="src\app\services\service.service.ts" />
+    <TypeScriptCompile Include="src\app\services\service.actions.ts" />
+    <TypeScriptCompile Include="src\app\services\service-master-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\services\service-item-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\services\service-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\services\service-list-embed.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

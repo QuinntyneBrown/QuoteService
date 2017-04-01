@@ -3,6 +3,7 @@ export * from "./geolocation";
 export * from "./pagination";
 export * from "./quotes";
 export * from "./router";
+export * from "./services";
 export * from "./shared";
 export * from "./users";
 export * from "./utilities";

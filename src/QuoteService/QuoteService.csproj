@@ -280,9 +280,14 @@
     <Compile Include="Features\Services\RemoveServiceCommand.cs" />
     <Compile Include="Features\Services\ServiceApiModel.cs" />
     <Compile Include="Features\Services\ServiceController.cs" />
+    <Compile Include="Data\Model\QuoteLineItem.cs" />
+    <Compile Include="Features\Quotes\QuoteRequestApiModel.cs" />
+    <Compile Include="Features\Geolocation\LocationApiModel.cs" />
+    <Compile Include="Features\Quotes\ServiceQuoteRequestApiModel.cs" />
+    <Compile Include="Features\Quotes\CalculateQuoteCommand.cs" />
+    <Compile Include="Features\Quotes\QuoteConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Services\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

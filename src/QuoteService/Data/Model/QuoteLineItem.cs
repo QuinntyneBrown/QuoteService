@@ -6,24 +6,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace QuoteService.Data.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Service: ILoggable
+    public class QuoteLineItem: ILoggable
     {
         public int Id { get; set; }
         
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
+
+        [ForeignKey("Quote")]
+        public int? QuoteId { get; set; }
         
 		[Index("NameIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]        
 		public string Name { get; set; }
 
-        public float Rate { get; set; }
-
         public string Description { get; set; }
-
-        public string ImageUrl { get; set; }
         
-		public DateTime CreatedOn { get; set; }
+        public float Amount { get; set; }
+        
+        public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         
@@ -34,5 +35,7 @@ namespace QuoteService.Data.Model
 		public bool IsDeleted { get; set; }
 
         public virtual Tenant Tenant { get; set; }
+
+        public virtual Quote Quote { get; set; }
     }
 }

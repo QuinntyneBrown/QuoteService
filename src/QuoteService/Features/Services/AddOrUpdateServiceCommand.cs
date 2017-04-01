@@ -34,6 +34,9 @@ namespace QuoteService.Features.Services
                 if (entity == null) _context.Services.Add(entity = new Service());
                 entity.Name = request.Service.Name;
                 entity.TenantId = request.TenantId;
+                entity.Rate = request.Service.Rate;
+                entity.Description = request.Service.Description;
+                entity.ImageUrl = request.Service.ImageUrl;
 
                 await _context.SaveChangesAsync();
 

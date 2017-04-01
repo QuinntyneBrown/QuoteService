@@ -16,8 +16,19 @@ namespace QuoteService.Data.Model
 		[Index("NameIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]        
 		public string Name { get; set; }
-        
-		public DateTime CreatedOn { get; set; }
+
+        public ICollection<QuoteLineItem> QuoteLineItems { get; set; } = new HashSet<QuoteLineItem>();
+
+        [NotMapped]
+        public float Total {
+            get {
+                float total = 0;
+                foreach (var quoteLineItem in QuoteLineItems) { total += quoteLineItem.Amount; }
+                return total;
+            }
+        }
+
+        public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         

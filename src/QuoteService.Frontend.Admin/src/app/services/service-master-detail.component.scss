@@ -1,0 +1,20 @@
+@import "../../styles/base/_all";
+
+ce-service-master-detail {
+    display:block;
+	@extend .view-card;
+
+    ce-service-edit-embed,
+    ce-service-list-embed {
+        float:left;
+        display:inline-block;
+        position:relative;
+        width:50%;
+    }
+}
+
+ce-service-master-detail::after {
+    clear:both;
+    display:block;
+    content:" ";
+}

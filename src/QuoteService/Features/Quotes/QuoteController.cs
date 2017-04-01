@@ -7,7 +7,7 @@ using static QuoteService.Features.Quotes.AddOrUpdateQuoteCommand;
 using static QuoteService.Features.Quotes.GetQuotesQuery;
 using static QuoteService.Features.Quotes.GetQuoteByIdQuery;
 using static QuoteService.Features.Quotes.RemoveQuoteCommand;
-
+using static QuoteService.Features.Quotes.CalculateQuoteCommand;
 
 namespace QuoteService.Features.Quotes
 {
@@ -25,6 +25,15 @@ namespace QuoteService.Features.Quotes
         [HttpPost]
         [ResponseType(typeof(AddOrUpdateQuoteResponse))]
         public async Task<IHttpActionResult> Add(AddOrUpdateQuoteRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
+
+        [Route("calculate")]
+        [HttpPost]
+        [ResponseType(typeof(CalculateQuoteResponse))]
+        public async Task<IHttpActionResult> Calculate(CalculateQuoteRequest request)
         {
             request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
             return Ok(await _mediator.Send(request));
