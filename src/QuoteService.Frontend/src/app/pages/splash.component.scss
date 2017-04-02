@@ -22,4 +22,16 @@ ce-splash {
     ce-button {
         margin-top:40px;
     }
+
+    .quote-request-form,
+    .quote-details {
+        float:left;
+        position:relative;
+    }
+}
+
+ce-splash::after {
+    content: " ";
+    display:block;
+    clear:both;
 }
