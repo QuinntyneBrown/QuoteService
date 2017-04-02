@@ -16,6 +16,7 @@ namespace QuoteService.Data
         DbSet<DigitalAsset> DigitalAssets { get; set; }
         DbSet<Quote> Quotes { get; set; }
         DbSet<Service> Services { get; set; }
+        DbSet<Location> Locations { get; set; }
 
         Task<int> SaveChangesAsync();
     }
@@ -36,6 +37,7 @@ namespace QuoteService.Data
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public override int SaveChanges()
         {

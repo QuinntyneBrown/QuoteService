@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace QuoteService.Features.Geolocation
 {
@@ -53,5 +54,7 @@ namespace QuoteService.Features.Geolocation
     {
         public List<Result> results { get; set; }
         public string status { get; set; }
+        public double Longitude { get { return results.ElementAt(0).geometry.location.lng; } }
+        public double Latitude { get { return results.ElementAt(0).geometry.location.lat; } }
     }
 }

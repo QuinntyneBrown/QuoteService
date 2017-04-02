@@ -288,8 +288,16 @@
     <Compile Include="Features\Quotes\ServiceQuoteRequestApiModel.cs" />
     <Compile Include="Features\Quotes\CalculateQuoteCommand.cs" />
     <Compile Include="Features\Quotes\QuoteConfiguration.cs" />
+    <Compile Include="Data\Model\Location.cs" />
+    <Compile Include="Features\Locations\AddOrUpdateLocationCommand.cs" />
+    <Compile Include="Features\Locations\GetLocationsQuery.cs" />
+    <Compile Include="Features\Locations\GetLocationByIdQuery.cs" />
+    <Compile Include="Features\Locations\RemoveLocationCommand.cs" />
+    <Compile Include="Features\Locations\LocationApiModel.cs" />
+    <Compile Include="Features\Locations\LocationController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Features\Locations\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

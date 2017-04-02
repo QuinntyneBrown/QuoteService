@@ -1,6 +1,5 @@
 using MediatR;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Net.Http;
 
 namespace QuoteService.Features.Geolocation
@@ -33,8 +32,8 @@ namespace QuoteService.Features.Geolocation
 
                 return new GetLongLatCoordinatesResponse()
                 {
-                    Latitude = googleResponse.results.ElementAt(0).geometry.location.lat,
-                    Longitude = googleResponse.results.ElementAt(0).geometry.location.lng
+                    Latitude = googleResponse.Latitude,
+                    Longitude = googleResponse.Longitude
                 };
             }
             private HttpClient _client;
