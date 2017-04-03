@@ -1,5 +1,6 @@
 export * from "./digital-assets";
 export * from "./geolocation";
+export * from "./locations";
 export * from "./pagination";
 export * from "./quotes";
 export * from "./router";

@@ -40,7 +40,25 @@ namespace QuoteService.Features.Locations
                 }
 
                 entity.Name = request.Location.Name;
-                
+
+                entity.Id = request.Location.Id;
+
+                entity.TenantId = request.Location.TenantId;
+
+                entity.Name = request.Location.Name;
+
+                entity.Address = request.Location.Address;
+
+                entity.City = request.Location.City;
+
+                entity.Province = request.Location.Province;
+
+                entity.PostalCode = request.Location.PostalCode;
+
+                entity.Longitude = request.Location.Longitude;
+
+                entity.Latitude = request.Location.Latitude;
+
                 await _context.SaveChangesAsync();
 
                 return new AddOrUpdateLocationResponse();

@@ -1,0 +1,20 @@
+@import "../../styles/base/_all";
+
+ce-location-master-detail {
+    display:block;
+	@extend .view-card;
+
+    ce-location-edit-embed,
+    ce-location-list-embed {
+        float:left;
+        display:inline-block;
+        position:relative;
+        width:50%;
+    }
+}
+
+ce-location-master-detail::after {
+    clear:both;
+    display:block;
+    content:" ";
+}

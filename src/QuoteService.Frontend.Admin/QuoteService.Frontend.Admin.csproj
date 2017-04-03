@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F6286226-21E2-4BEB-B76D-F9E2D650E02A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -240,6 +238,30 @@
     <Content Include="src\app\geolocation\geolocation.component.scss">
       <DependentUpon>geolocation.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\locations\location-edit-embed.component.html">
+      <DependentUpon>location-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-edit-embed.component.scss">
+      <DependentUpon>location-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-item-embed.component.html">
+      <DependentUpon>location-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-item-embed.component.scss">
+      <DependentUpon>location-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-list-embed.component.html">
+      <DependentUpon>location-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-list-embed.component.scss">
+      <DependentUpon>location-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-master-detail.component.html">
+      <DependentUpon>location-master-detail.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\locations\location-master-detail.component.scss">
+      <DependentUpon>location-master-detail.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\quotes\quote-edit-embed.component.html">
       <DependentUpon>quote-edit-embed.component.ts</DependentUpon>
     </Content>
@@ -410,8 +432,7 @@
           <IISUrl>http://localhost:64411/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -546,6 +567,14 @@
     <TypeScriptCompile Include="src\app\services\service-item-embed.component.ts" />
     <TypeScriptCompile Include="src\app\services\service-edit-embed.component.ts" />
     <TypeScriptCompile Include="src\app\services\service-list-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\locations\index.ts" />
+    <TypeScriptCompile Include="src\app\locations\location.model.ts" />
+    <TypeScriptCompile Include="src\app\locations\location.service.ts" />
+    <TypeScriptCompile Include="src\app\locations\location-master-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\locations\location.actions.ts" />
+    <TypeScriptCompile Include="src\app\locations\location-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\locations\location-item-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\locations\location-list-embed.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
