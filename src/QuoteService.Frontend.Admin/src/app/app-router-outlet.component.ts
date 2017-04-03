@@ -12,6 +12,8 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
             { path: "/", name: "service-master-detail", authRequired: true },
 
+            { path: "/locations", name: "location-master-detail", authRequired: true },
+
             { path: "/login", name: "login" },
             { path: "/error", name: "error" },
             { path: "*", name: "not-found" }

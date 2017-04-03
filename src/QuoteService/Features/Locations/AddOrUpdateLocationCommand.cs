@@ -67,7 +67,5 @@ namespace QuoteService.Features.Locations
             private readonly QuoteServiceContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

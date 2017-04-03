@@ -23,7 +23,7 @@ namespace QuoteService
                     new InjectionFactory(x => new HttpClient()));
 
             container.RegisterInstance(AuthConfiguration.LazyConfig);
-            container.RegisterInstance(AmazonS3Configuration.LazyConfig);          
+            container.RegisterInstance(AzureBlobStorageConfiguration.LazyConfig);          
             return container;
         }
     }

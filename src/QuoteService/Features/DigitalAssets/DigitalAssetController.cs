@@ -9,7 +9,8 @@ using System.Web.Http.Description;
 using System.Net.Http.Headers;
 
 using static QuoteService.Features.DigitalAssets.GetDigitalAssetByUniqueIdQuery;
-using static QuoteService.Features.DigitalAssets.AmazonS3UploadDigitalAssetCommand;
+using static QuoteService.Features.DigitalAssets.AzureBlobStorageDigitalAssetCommand;
+using QuoteService.Features.Core;
 
 namespace QuoteService.Features.DigitalAssets
 {
@@ -73,9 +74,14 @@ namespace QuoteService.Features.DigitalAssets
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var user = await _userManager.GetUserAsync(User);            
-            var provider = await Request.Content.ReadAsMultipartAsync(new InMemoryMultipartFormDataStreamProvider());            
-            return Ok(await _mediator.Send(new AmazonS3UploadDigitalAssetRequest() { Provider = provider, Folder = $"{user.Tenant.UniqueId}" }));
+            
+            var provider = await Request.Content.ReadAsMultipartAsync(new InMemoryMultipartFormDataStreamProvider());
+
+            return Ok(await _mediator.Send(new AzureBlobStorageDigitalAssetRequest() {
+                Provider = provider,
+                Folder = $"{Request.GetTenantUniqueId()}",
+                TenantUniqueId = Request.GetTenantUniqueId()
+            }));
         }
 
         protected readonly IMediator _mediator;

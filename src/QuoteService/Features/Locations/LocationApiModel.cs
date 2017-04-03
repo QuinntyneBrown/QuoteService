@@ -18,9 +18,12 @@ namespace QuoteService.Features.Locations
 
         public string PostalCode { get; set; }
 
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
+
+        public bool IsMasterOrigin { get; set; }
+
         public static TModel FromLocation<TModel>(Location location) where
             TModel : LocationApiModel, new()
         {
@@ -43,6 +46,8 @@ namespace QuoteService.Features.Locations
             model.Longitude = location.Longitude;
 
             model.Latitude = location.Latitude;
+
+            model.IsMasterOrigin = location.IsMasterOrigin;
 
             return model;
         }

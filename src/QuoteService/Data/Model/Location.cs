@@ -25,9 +25,11 @@ namespace QuoteService.Data.Model
 
         public string PostalCode { get; set; }
 
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
+
+        public bool IsMasterOrigin { get; set; }
 
 		public DateTime CreatedOn { get; set; }
         
