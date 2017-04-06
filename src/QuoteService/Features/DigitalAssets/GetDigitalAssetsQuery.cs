@@ -7,12 +7,15 @@ using System.Data.Entity;
 using QuoteService.Data.Model;
 using static QuoteService.Features.DigitalAssets.Constants;
 using QuoteService.Features.Core;
+using System;
 
 namespace QuoteService.Features.DigitalAssets
 {
     public class GetDigitalAssetsQuery
     {
-        public class GetDigitalAssetsRequest : IRequest<GetDigitalAssetsResponse> { }
+        public class GetDigitalAssetsRequest : IRequest<GetDigitalAssetsResponse> {
+            public Guid TenantUniqueId { get; set; }
+        }
 
         public class GetDigitalAssetsResponse
         {

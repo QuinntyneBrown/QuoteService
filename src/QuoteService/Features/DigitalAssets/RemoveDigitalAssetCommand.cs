@@ -2,6 +2,7 @@ using MediatR;
 using QuoteService.Data;
 using System.Threading.Tasks;
 using QuoteService.Features.Core;
+using System;
 
 namespace QuoteService.Features.DigitalAssets
 {
@@ -10,6 +11,7 @@ namespace QuoteService.Features.DigitalAssets
         public class RemoveDigitalAssetRequest : IRequest<RemoveDigitalAssetResponse>
         {
             public int Id { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class RemoveDigitalAssetResponse { }

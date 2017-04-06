@@ -4,6 +4,7 @@ using QuoteService.Data.Model;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using QuoteService.Features.Core;
+using System;
 
 namespace QuoteService.Features.DigitalAssets
 {
@@ -12,6 +13,7 @@ namespace QuoteService.Features.DigitalAssets
         public class AddOrUpdateDigitalAssetRequest : IRequest<AddOrUpdateDigitalAssetResponse>
         {
             public DigitalAssetApiModel DigitalAsset { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class AddOrUpdateDigitalAssetResponse { }

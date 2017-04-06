@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F6286226-21E2-4BEB-B76D-F9E2D650E02A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -195,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="azureBlobStorageConfiguration.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="index.html" />
     <Content Include="lib\moment.min.js" />
     <Content Include="lib\native-shim.js" />
@@ -411,7 +412,9 @@
     <Content Include="src\styles\base\view-card.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Startup.cs" />
@@ -434,8 +437,7 @@
           <IISUrl>http://localhost:64411/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -505,7 +507,7 @@
     <TypeScriptCompile Include="src\app\utilities\camel-case-to-snake-case.ts" />
     <TypeScriptCompile Include="src\app\utilities\constants.ts" />
     <TypeScriptCompile Include="src\app\utilities\constructor.ts" />
-    <TypeScriptCompile Include="src\app\utilities\convert-to-int.ts" />
+    <TypeScriptCompile Include="src\app\utilities\convert-to-binary.ts" />
     <TypeScriptCompile Include="src\app\utilities\create-element.ts" />
     <TypeScriptCompile Include="src\app\utilities\create-option.ts" />
     <TypeScriptCompile Include="src\app\utilities\debounce.ts" />
@@ -588,9 +590,6 @@
       <Project>{a8711bc3-f343-4e44-b045-349942559795}</Project>
       <Name>QuoteService</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="azureBlobStorageConfiguration.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

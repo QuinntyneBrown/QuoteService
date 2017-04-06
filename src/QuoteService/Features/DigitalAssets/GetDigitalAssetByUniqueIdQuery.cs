@@ -2,8 +2,8 @@ using MediatR;
 using QuoteService.Data;
 using QuoteService.Features.Core;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace QuoteService.Features.DigitalAssets
 {
@@ -12,6 +12,7 @@ namespace QuoteService.Features.DigitalAssets
         public class GetDigitalAssetByUniqueIdRequest : IRequest<GetDigitalAssetByUniqueIdResponse>
         {
             public string UniqueId { get; set; }
+            public Guid TenantUniqueId { get; set; }
         }
 
         public class GetDigitalAssetByUniqueIdResponse

@@ -4,6 +4,7 @@ export * from "./append-to-target-async";
 export * from "./camel-case-to-snake-case";
 export * from "./constants";
 export * from "./constructor";
+export * from "./convert-to-binary";
 export * from "./create-element";
 export * from "./create-option";
 export * from "./debounce";

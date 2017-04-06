@@ -1,6 +1,7 @@
-using QuoteService.Features.DigitalAssets.UploadHandlers;
-using QuoteService.Security;
 using MediatR;
+using QuoteService.Features.DigitalAssets.UploadHandlers;
+using QuoteService.Features.Core;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,7 +11,10 @@ using System.Net.Http.Headers;
 
 using static QuoteService.Features.DigitalAssets.GetDigitalAssetByUniqueIdQuery;
 using static QuoteService.Features.DigitalAssets.AzureBlobStorageDigitalAssetCommand;
-using QuoteService.Features.Core;
+using static QuoteService.Features.DigitalAssets.GetDigitalAssetsQuery;
+using static QuoteService.Features.DigitalAssets.GetDigitalAssetByIdQuery;
+using static QuoteService.Features.DigitalAssets.RemoveDigitalAssetCommand;
+using static QuoteService.Features.DigitalAssets.AddOrUpdateDigitalAssetCommand;
 
 namespace QuoteService.Features.DigitalAssets
 {
@@ -18,42 +22,57 @@ namespace QuoteService.Features.DigitalAssets
     [RoutePrefix("api/digitalasset")]
     public class DigitalAssetController : ApiController
     {        
-        public DigitalAssetController(IMediator mediator, IUserManager userManager)
+        public DigitalAssetController(IMediator mediator)
         {
             _mediator = mediator;
-            _userManager = userManager;
         }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateDigitalAssetCommand.AddOrUpdateDigitalAssetResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateDigitalAssetCommand.AddOrUpdateDigitalAssetRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateDigitalAssetResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateDigitalAssetRequest request)
+        {
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateDigitalAssetCommand.AddOrUpdateDigitalAssetResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateDigitalAssetCommand.AddOrUpdateDigitalAssetRequest request)
-            => Ok(await _mediator.Send(request));
-        
+        [ResponseType(typeof(AddOrUpdateDigitalAssetResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateDigitalAssetRequest request)
+        {
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            return Ok(await _mediator.Send(request));
+        }
+
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(GetDigitalAssetsQuery.GetDigitalAssetsResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetDigitalAssetsQuery.GetDigitalAssetsRequest()));
+        {
+            var request = new GetDigitalAssetsRequest();
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("getById")]
         [HttpGet]
         [ResponseType(typeof(GetDigitalAssetByIdQuery.GetDigitalAssetByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetDigitalAssetByIdQuery.GetDigitalAssetByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        public async Task<IHttpActionResult> GetById([FromUri]GetDigitalAssetByIdRequest request)
+        {
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveDigitalAssetCommand.RemoveDigitalAssetResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveDigitalAssetCommand.RemoveDigitalAssetRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveDigitalAssetResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveDigitalAssetRequest request)
+        {
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("serve")]
         [HttpGet]
@@ -62,6 +81,8 @@ namespace QuoteService.Features.DigitalAssets
         public async Task<HttpResponseMessage> Serve([FromUri]GetDigitalAssetByUniqueIdRequest request)
         {
             var response = await _mediator.Send(request);
+            request.TenantUniqueId = new Guid($"{Request.GetOwinContext().Environment["Tenant"]}");
+
             var result = new HttpResponseMessage(HttpStatusCode.OK);
             result.Content = new ByteArrayContent(response.DigitalAsset.Bytes);
             result.Content.Headers.ContentType = new MediaTypeHeaderValue(response.DigitalAsset.ContentType);
@@ -74,7 +95,7 @@ namespace QuoteService.Features.DigitalAssets
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            
+
             var provider = await Request.Content.ReadAsMultipartAsync(new InMemoryMultipartFormDataStreamProvider());
 
             return Ok(await _mediator.Send(new AzureBlobStorageDigitalAssetRequest() {
@@ -85,6 +106,5 @@ namespace QuoteService.Features.DigitalAssets
         }
 
         protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
     }
 }
