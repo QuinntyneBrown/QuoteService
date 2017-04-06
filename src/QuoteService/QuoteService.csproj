@@ -232,6 +232,7 @@
     <Compile Include="Data\Helpers\SoftDeleteQueryVisitor.cs" />
     <Compile Include="Data\Model\ILoggable.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
+    <Compile Include="Features\Core\AllowTenant.cs" />
     <Compile Include="Features\Core\Cache.cs" />
     <Compile Include="Features\Core\CacheProvider.cs" />
     <Compile Include="Features\Core\DateExtensions.cs" />

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using QuoteService.Features.Core;
 using QuoteService.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -19,6 +20,7 @@ namespace QuoteService.Features.Geolocation
 
         [Route("getDistance")]
         [AllowAnonymous]
+        [AllowTenant]
         [HttpPost]
         [ResponseType(typeof(GetDistanceResponse))]
         public async Task<IHttpActionResult> GetDistance([FromBody]GetDistanceRequest request)

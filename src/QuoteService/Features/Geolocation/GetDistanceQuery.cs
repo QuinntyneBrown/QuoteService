@@ -2,8 +2,11 @@ using Google.Maps.DistanceMatrix;
 using Google.Maps;
 using MediatR;
 using System.Threading.Tasks;
-
+using System.Linq;
+using System.Data.Entity;
 using static QuoteService.Features.Geolocation.GetLongLatCoordinatesQuery;
+using System;
+using QuoteService.Data;
 
 namespace QuoteService.Features.Geolocation
 {
@@ -11,7 +14,7 @@ namespace QuoteService.Features.Geolocation
     {
         public class GetDistanceRequest : IRequest<GetDistanceResponse>
         {
-            public int? TenantId;
+            public Guid? TenantUniqueId;
             public string Address1 { get; set; }
             public string Address2 { get; set; }
         }
@@ -23,14 +26,15 @@ namespace QuoteService.Features.Geolocation
 
         public class GetDistanceHandler : IAsyncRequestHandler<GetDistanceRequest, GetDistanceResponse>
         {
-            public GetDistanceHandler(IMediator meditator)
+            public GetDistanceHandler(IMediator meditator, IQuoteServiceContext context)
             {
                 _meditator = meditator;
+                _context = context;
             }
 
             public async Task<GetDistanceResponse> Handle(GetDistanceRequest request)
             {
-                DistanceMatrixRequest distanceMatrixRequest = new DistanceMatrixRequest();
+                var distanceMatrixRequest = new DistanceMatrixRequest();
 
                 var coordinate1 = await _meditator.Send(new GetLongLatCoordinatesRequest() { Address = request.Address1 });
                 var coordinate2 = await _meditator.Send(new GetLongLatCoordinatesRequest() { Address = request.Address2 });
@@ -49,6 +53,7 @@ namespace QuoteService.Features.Geolocation
             }
 
             private IMediator _meditator;
+            private IQuoteServiceContext _context;
         }
     }
 }
