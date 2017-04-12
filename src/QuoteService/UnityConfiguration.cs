@@ -7,6 +7,7 @@ using QuoteService.Features.DigitalAssets;
 using QuoteService.Security;
 using System.Net.Http;
 using Microsoft.Owin;
+using QuoteService.Features.Geolocation;
 
 namespace QuoteService
 {
@@ -23,7 +24,9 @@ namespace QuoteService
                     new InjectionFactory(x => new HttpClient()));
 
             container.RegisterInstance(AuthConfiguration.LazyConfig);
-            container.RegisterInstance(AzureBlobStorageConfiguration.LazyConfig);          
+            container.RegisterInstance(AzureBlobStorageConfiguration.LazyConfig);
+            container.RegisterInstance(GoogleApiConfiguration.LazyConfig);
+              
             return container;
         }
     }

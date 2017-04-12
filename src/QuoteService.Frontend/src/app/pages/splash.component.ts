@@ -1,5 +1,5 @@
 import { ApiService } from "../shared";
-import {  } from "../utilities";
+import { getCurrentPositionAsync } from "../utilities";
 
 const template = require("./splash.component.html");
 const styles = require("./splash.component.scss");
@@ -20,9 +20,16 @@ export class SplashComponent extends HTMLElement {
         this.innerHTML = `<style>${styles}</style> ${template}`;
         this._bind();
         this._setEventListeners();
+
+        
     }
 
+    private _coordinates: Coordinates = null;
+
     private async _bind() {
+
+        this._coordinates = await getCurrentPositionAsync();
+        
         this.services = await this._apiService.getServices();
         
         for (let i = 0; i < this.services.length; i++) {
@@ -39,7 +46,9 @@ export class SplashComponent extends HTMLElement {
             city: this._cityElement.value,
             dateTime: this._dateTimeElement.value,
             durationInHours: this._durationInHoursElement.value,
-            serviceId: this._serviceSelectElement.value
+            serviceId: this._serviceSelectElement.value,
+            latitude: this._coordinates.latitude,
+            longitude: this._coordinates.longitude
         });
 
         this._resultElement.innerText = result.quote.total;

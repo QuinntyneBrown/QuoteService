@@ -9,6 +9,6 @@ namespace QuoteService.Features.Quotes
         public string Province { get; set; } = "Ontario";
         public DateTime? DateTime { get; set; }
         public float DurationInHours { get; set; }
-        public int? ServiceId { get; set; }        
+        public int? ServiceId { get; set; }              
     }
 }

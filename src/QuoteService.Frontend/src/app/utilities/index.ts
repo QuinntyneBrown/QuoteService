@@ -11,6 +11,7 @@ export * from "./extend-css-async";
 export * from "./extend";
 export * from "./fetch";
 export * from "./form-encode";
+export * from "./get-current-position-async";
 export * from "./guid";
 export * from "./http";
 export * from "./insert-after";

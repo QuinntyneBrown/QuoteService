@@ -22,8 +22,11 @@ export class ApiService {
         city: any,
         dateTime: any,
         durationInHours: any,
-        serviceId:any
+        serviceId: any,
+        longitude: number,
+        latitude:number
     }): Promise<any> {
+        alert(JSON.stringify(serviceQuoteRequest));
         return this._fetch({ url: "/api/quote/calculate", method: "POST", data: { quoteRequest: { serviceQuoteRequest } } }).then((results: string) => {
             return JSON.parse(results);
         });

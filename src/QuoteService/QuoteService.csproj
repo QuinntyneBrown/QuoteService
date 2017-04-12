@@ -326,6 +326,8 @@
     <Compile Include="Features\Locations\LocationController.cs" />
     <Compile Include="Features\DigitalAssets\AzureBlobStorageConfiguration.cs" />
     <Compile Include="Features\DigitalAssets\AzureBlobStorageDigitalAssetCommand.cs" />
+    <Compile Include="Features\Geolocation\GoogleApiConfiguration.cs" />
+    <Compile Include="Features\Geolocation\GetTimeZoneQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

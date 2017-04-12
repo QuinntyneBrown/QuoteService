@@ -193,6 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="azureBlobStorageConfiguration.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="googleApiConfiguration.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="index.html" />
     <Content Include="lib\moment.min.js" />
     <Content Include="lib\native-shim.js" />
@@ -404,6 +410,7 @@
     <TypeScriptCompile Include="src\app\utilities\extend.ts" />
     <TypeScriptCompile Include="src\app\utilities\fetch.ts" />
     <TypeScriptCompile Include="src\app\utilities\form-encode.ts" />
+    <TypeScriptCompile Include="src\app\utilities\get-current-position-async.ts" />
     <TypeScriptCompile Include="src\app\utilities\guid.ts" />
     <TypeScriptCompile Include="src\app\utilities\http.ts" />
     <TypeScriptCompile Include="src\app\utilities\index.ts" />

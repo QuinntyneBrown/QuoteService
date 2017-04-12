@@ -36,7 +36,7 @@ namespace QuoteService.Features.Geolocation
                     Longitude = googleResponse.Longitude
                 };
             }
-            private HttpClient _client;
+            protected readonly HttpClient _client;
         }
     }
 }
