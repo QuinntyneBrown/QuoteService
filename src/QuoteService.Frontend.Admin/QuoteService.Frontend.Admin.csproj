@@ -198,6 +198,7 @@
     <Content Include="azureBlobStorageConfiguration.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="dist\app.js" />
     <Content Include="index.html" />
     <Content Include="lib\moment.min.js" />
     <Content Include="lib\native-shim.js" />
@@ -585,9 +586,7 @@
     <TypeScriptCompile Include="src\app\locations\location-item-embed.component.ts" />
     <TypeScriptCompile Include="src\app\locations\location-list-embed.component.ts" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\QuoteService\QuoteService.csproj">
       <Project>{a8711bc3-f343-4e44-b045-349942559795}</Project>
@@ -598,6 +597,11 @@
     <Content Include="googleApiConfiguration.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\app.js.map" />
+    <None Include="Properties\PublishProfiles\quote-service - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\quote-service - Web Deploy.pubxml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
